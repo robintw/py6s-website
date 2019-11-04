@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+
+    <title>Py6S - What is 6S?</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/py6s.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/sunburst.css">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-37329435-2', 'rtwilson.com');
+  ga('send', 'pageview');
+
+</script>
+  </head>
+
+  <body>
+
+     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Py6S</a></li>
+            <li class='active'><a href="6s.html">What is 6S?</a></li>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="gettingstarted.html">Getting Started</a></li>
+            <li><a href="docs.html">Documentation</a></li>
+            <li><a href="support.html">Support</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron header">
+      <div class="container">
+        <h1>What is 6S?</h1>
+      </div>
+    </div>
+    <div class="container">
+      <div class="col-md-8">
+      <p><b><i>Second Simulation of the Satellite Signal in the Solar Spectrum</i></b> (known, understandably, as 6S) is a Radiative Transfer Model which is widely used within remote sensing. It simulates the effect of the atmosphere on light passing through it, and can basically answer two questions:
+
+        <ol>
+          <li>What intensity of light would be received at a satellite or airborne sensor under a specific set of atmospheric and ground reflectance conditions?</li>
+          <li>What would the ground reflectance have been, given the measurement of light intensity at a sensor and the atmospheric conditions? (that is, the reverse of the previous question)</li>
+        </ol>
+
+      Although these questions may seem relatively simple, they're actually quite complicated to answer. They're also very important. Radiative Transfer Models like 6S are often used to <i>atmospherically correct</i> satellite images (the standard atmospheric corrections for data from the MODIS and Landsat satellites are based upon 6S), and they also have a key role to play in research (for example, assessing the sensitivity of a method to atmospheric contamination.).</p>
+
+      <p>6S was originally developed by a team led by Eric Vermote, and is fully described in <a href="http://www.geog.ucl.ac.uk/~mdisney/teaching/PPRS/papers/vermote_etal_IEEE_1997.pdf">Vermote et al. (1997)</a> and the <a href="http://6s.ltdri.org/6S_code2_thiner_stuff/6s_ltdri_org_manual.htm">original manuals</a>.<p>
+
+      <p>As described on the <a href="features.html">Features page</a>, Py6S is simply a wrapper around the original 6S code. I did not write any of the original 6S code and cannot answer detailed questions about the way that 6S itself works.</p> 
+    </div>
+
+      </div>
+
+
+    <div id='footer'>
+  <div class='col-md-12 text-right'>
+  <p class='vertical-align: center'>
+Kindly hosted by <a href="http://www.rackspace.com">Rackspace</a></p>
+</div>
+</div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/prettify.js"></script>
+
+    <script>
+  !function ($) {
+    $(function(){
+      window.prettyPrint && prettyPrint()
+    })
+  }(window.jQuery)
+</script>
+  </body>
+</html>

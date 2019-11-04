@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+
+    <title>Py6S - Features</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/py6s.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/sunburst.css">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-37329435-2', 'rtwilson.com');
+  ga('send', 'pageview');
+
+</script>
+  </head>
+
+  <body>
+
+     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Py6S</a></li>
+            <li><a href="6s.html">What is 6S?</a></li>
+            <li class='active'><a href="features.html">Features</a></li>
+            <li><a href="gettingstarted.html">Getting Started</a></li>
+            <li><a href="docs.html">Documentation</a></li>
+            <li><a href="support.html">Support</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron header">
+      <div class="container">
+        <h1>Features</h1>
+      </div>
+    </div> <!-- /container -->
+    <div class='container'>
+      <div class='row'>
+
+
+        <div class="col-md-6" style="vertical-align: middle">
+          <a name="helpers"></a><h2>No input file writing</h2>
+          <p>Don't spend your time manually writing 6S input files, trying to remember exactly how each option should be specified, and - if you're anything like me - constantly making mistakes. Let Py6S take care of all of this for you, while you focus on the science.
+          </p>
+<pre class='prettyprint'># Write this code
+from Py6S import *
+s = SixS()
+s.atmosprofile = AtmosProfile.UserWaterAndOzone(3.6, 0.9)
+s.run()
+
+# Rather than this input file manually
+0
+40.0 100.0 45.0 50.0 7 23
+3.6 0.9
+</pre>
+       </div>
+       <div class="col-md-6" style="vertical-align: middle">
+          <h2>Easily run many times</h2>
+          <p>Do you want to run a simulation for multiple wavelengths? Easy - there's a simple function for it. How about iterating over a variety of aerosol parameterisations? Just write a simple for loop. How about building a lookup table from a wide range of possible parameterisations? Yup, that's possible too!
+          </p>
+          <pre class='prettyprint'># Run for Visible-NIR wavelengths
+SixSHelpers.Wavelengths.run_vnir(s)
+</pre>
+          <pre class='prettyprint'># Run for multiple aerosol types
+for aero in [AeroProfile.Urban, AeroProfile.Maritime]:
+  s.aero_profile = AeroProfile.PredefinedType(aero)
+  s.run()
+  print s.outputs.apparent_radiance
+</pre>
+       </div>
+      </div>
+      <hr>
+      <div class='row'>
+        <div class="col-md-6" style="vertical-align: middle">
+          <h2>Use the rest of Python</h2>
+          <p>As Py6S is a Python module, you can use the rest of Python along with all of the Py6S functions. Of course, you can use other Python modules too - anything from plotting graphs with matplotlib, to creating a webapp with Flask.
+          </p>
+          <pre class='prettyprint'># Plot previously-generated Py6S results
+from matplotlib.pyplot import *
+plot(wavelengths, results_1, 'b--')
+plot(wavelengths, results_2, 'g--')
+</pre>
+
+<pre class='prettyprint'># Use PyProSAIL to generate ground reflectance spectrum
+import pyprosail
+spectrum = pyprosail.run(1.5, 40, 8, 0, 0.01, 0.009, 1, 3, 0.01, 30, 0, 10, 0, pyprosail.Planophile)
+s.ground_reflectance = GroundReflectance.HomogeneousLambertian(spectrum)
+</pre>
+       </div>
+       <div class="col-md-6" style="vertical-align: middle">
+          <a name="import"></a><h2>Import real-world data</h2>
+          <p>Often you'll want to run a simulation of a particular situation in the real-world. Py6S can help you do this, allowing you to import aerosol data (from AERONET), radiosonde data (from various sources) and ground reflectance spectra (from various spectral libraries), as well as to set geometrical parameters based on location and time. 
+          </p>
+          <pre class='prettyprint'># Import spectrum from ASTER spectral library
+s.ground_reflectance = GroundReflectance.HomogeneousLambertian(Spectra.import_from_aster("http://speclib.jpl.nasa.gov/speclibdata/jhu.becknic.vegetation.trees.conifers.solid.conifer.spectrum.txt"))
+</pre>
+<pre class='prettyprint'># Import atmospheric data from U of Wyoming Radiosonde website
+s.atmos_profile = SixSHelpers.Radiosonde.import_uow_radiosonde_data("http://weather.uwyo.edu/cgi-bin/sounding?region=europe&TYPE=TEXT%3ALIST&YEAR=2012&MONTH=02&FROM=2712&TO=2712&STNM=03808", AtmosProfile.MidlatitudeWinter)
+</pre>
+       </div>
+      </div>
+      <hr>
+      <div class='row'>
+        <div class="col-md-6" style="vertical-align: middle">
+          <h2>Automatically run in parallel</h2>
+          <p>6S can take a while to run some complex simulations, which makes running for multiple wavelengths or angles very time-consuming. However, when you use the built-in helper functions to do this, the simulations will automatically be run in parallel. That means, if you've got a quad-core processor, the simulations should be almost four times faster!
+          </p>
+          <pre class='prettyprint'># Run for multiple wavelengths with automatic parallelisation
+SixSHelpers.Wavelengths.run_vnir(s)
+</pre>
+<pre class='prettyprint'># Run for multiple angles with automatic parallelisation
+result = SixSHelpers.Angles.run360(s, 'view', output_name='pixel_reflectance')
+</pre>
+       </div>
+       <div class="col-md-6" style="vertical-align: middle">
+          <h2>More reproducible</h2>
+          <p>Rather than manually writing 6S incomprehensible input files and trying to come up with sensible names for them all, write all of your simulations as simple Python functions using the easy-to-understand Py6S interface. Then, when you come back to the project a year later, you've actually got a chance of understanding what you did!
+          </p>
+       </div>
+     </div>
+     <hr>
+      <div class='row'>
+        <div class="col-md-6" style="vertical-align: middle">
+          <h2>Directly wraps 6S</h2>
+          <p>You don't need to worry about getting different results using Py6S compared
+            to using 6S manually. They're guaranteed to be exactly the same as Py6S simply
+            writes 6S input files and interprets the output files - using the original 6S executable.
+          </p>
+       </div>
+       <div class="col-md-6" style="vertical-align: middle">
+          <h2>Supports all 6S functions</h2>
+          <p>You can access all of the functionality of 6S from within Py6S. All of the parameter options available in 6S are supported - yes, even the really weird ones that no-one ever uses!
+          </p>
+       </div>
+     </div>
+    </div>
+
+    <div id='footer'>
+  <div class='col-md-12 text-right'>
+  <p class='vertical-align: center'>
+Kindly hosted by <a href="http://www.rackspace.com">Rackspace</a></p>
+</div>
+</div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/prettify.js"></script>
+
+    <script>
+  !function ($) {
+    $(function(){
+      window.prettyPrint && prettyPrint()
+    })
+  }(window.jQuery)
+</script>
+  </body>
+</html>

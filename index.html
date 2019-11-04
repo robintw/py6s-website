@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+
+    <title>Py6S - A Python interface to 6S</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/py6s.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/sunburst.css">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-37329435-2', 'rtwilson.com');
+      ga('send', 'pageview');
+
+    </script>
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="index.html">Py6S</a></li>
+            <li><a href="6s.html">What is 6S?</a></li>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="gettingstarted.html">Getting Started</a></li>
+            <li><a href="docs.html">Documentation</a></li>
+            <li><a href="support.html">Support</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        
+      <div class="row">
+        <div class="col-md-7">
+          <h1>Py6S</h1>
+        <p>Run atmospheric radiative transfer simulations easily with a intuitive Python interface to the 6S model</p>
+        <p><a class="btn btn-primary btn-lg" role="button" href="gettingstarted.html">Get started &raquo;</a></p>
+        <p class='small'>By Robin Wilson, University of Southampton</p>
+
+        </div>
+        <div class="col-md-5" style="vertical-align: middle">
+          <pre class='prettyprint'>from Py6S import *
+# Set some parameters
+s = SixS()
+s.wavelength = Wavelength(0.471)
+s.aot550 = 0.27
+s.ground_reflectance =
+GroundReflectance.HomogenousLambertian(0.36)
+
+s.run()
+print s.outputs.apparent_radiance
+</pre>
+
+       </div>
+
+      </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Run simulations easily</h2>
+          <p>
+            <ul class='icons'>
+              <li>No more messing around with 6S input files</li>
+              <li>Consistent, intuitive interface</li>
+              <li>Easy to use even with no Python experience</li>
+            </ul>
+          </p>
+          <p><a class="btn btn-default" href="features.html" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>Import external data</h2>
+          <p>
+            <ul class='icons'>
+              <li>AERONET AOT and aerosol parameters</li>
+              <li>Radiosonde profiles</li>
+              <li>Spectral libraries</li>
+            </ul>
+          </p>
+          <p><a class="btn btn-default" href="features.html#import" role="button">View details &raquo;</a></p>
+       </div>
+        <div class="col-md-4">
+          <h2>Built-in helper functions</h2>
+          <p>
+            <ul class='icons'>
+              <li>Run for standard wavelength ranges</li>
+              <li>Run for all bands of a sensor</li>
+              <li>Run for many angles</li>
+            </ul>
+          </p>
+          <p><a class="btn btn-default" href="features.html#helpers" role="button">View details &raquo;</a></p>
+        </div>
+      </div>
+    </div> <!-- /container -->
+
+    <div id='footer'>
+  <div class='col-md-12 text-right'>
+  <p class='vertical-align: center'>
+Kindly hosted by <a href="http://www.rackspace.com">Rackspace</a></p>
+</div>
+</div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/prettify.js"></script>
+
+    <script>
+  !function ($) {
+    $(function(){
+      window.prettyPrint && prettyPrint()
+    })
+  }(window.jQuery)
+</script>
+  </body>
+</html>
